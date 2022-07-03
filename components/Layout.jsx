@@ -12,7 +12,7 @@ const Layout = ({children, title}) => {
             </Head>
 
             <div className="wrapper flex flex-col min-h-screen">
-                <header>
+                <header className="sticky z-50 bg-white top-0">
                     <nav className="flex h-16 justify-between shadow-md items-center px-4">
                         <Link href="/">
                             <a className="text-lg font-bold">Shop</a>
@@ -27,7 +27,7 @@ const Layout = ({children, title}) => {
                         </div>
                     </nav>
                 </header>
-                <main className="container m-auto mt-4 px-4">{children}</main>
+                <main className="container mx-auto mt-4 px-4">{children}</main>
                 <footer className="flex items-center justify-center h-10 shadow-inner">Здесь могла бы быть ваша реклама <span className="px-2">|</span> 2022</footer>
             </div>
         </>
