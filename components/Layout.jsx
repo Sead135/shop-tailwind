@@ -1,8 +1,12 @@
-import React from "react";
+import React, {useContext} from "react";
 import Head from "next/head";
 import Link from "next/link";
+import {Store} from "../utils/store";
 
 const Layout = ({children, title}) => {
+    const {state, dispatch} = useContext(Store);
+    const {cart} = state;
+
     return (
         <>
             <Head>
@@ -19,7 +23,14 @@ const Layout = ({children, title}) => {
                         </Link>
                         <div className="">
                             <Link href="/cart">
-                                <a className="p-2">Корзина</a>
+                                <a className="p-2">
+                                    Корзина
+                                    {cart.cartItems.length > 0 && (
+                                        <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
+                                            {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
+                                        </span>
+                                    )}
+                                </a>
                             </Link>
                             <Link href="/login">
                                 <a className="p-2">Войти</a>
@@ -28,7 +39,9 @@ const Layout = ({children, title}) => {
                     </nav>
                 </header>
                 <main className="container mx-auto mt-4 px-4">{children}</main>
-                <footer className="flex items-center justify-center h-10 shadow-inner">Здесь могла бы быть ваша реклама <span className="px-2">|</span> 2022</footer>
+                <footer className="flex items-center justify-center h-10 shadow-inner">
+                    Здесь могла бы быть ваша реклама <span className="px-2">|</span> 2022
+                </footer>
             </div>
         </>
     );

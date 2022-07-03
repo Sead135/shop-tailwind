@@ -8,7 +8,7 @@ const Home = () => {
         <Layout title="Главная страница">
             <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
                 {data.products.map(product => (
-                    <ProductItem product={product} key={product.id}/>
+                    <ProductItem product={product} key={product.slug}/>
                 ))}
             </div>
         </Layout>

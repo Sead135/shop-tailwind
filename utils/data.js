@@ -118,7 +118,7 @@ const data = {
       price: 4999,
       rating: "4.0",
       numReview: 40,
-      countInStocks: 14,
+      countInStocks: 0,
       link: "https://www.lamoda.ru/p/rtlabb350201/clothes-mango-dzhinsy/",
       img: "https://a.lmcdn.ru/img600x866/R/T/RTLABB350201_16215220_1_v1.jpg",
       description: "\n        Джинсы\n        Mango.\n        \n      ",
