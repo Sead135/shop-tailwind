@@ -9,7 +9,7 @@ const data = {
       numReview: 25,
       countInStocks: 8,
       link: "https://www.lamoda.ru/p/mp002xw0bh42/clothes-markformelle-olimpiyka/",
-      img: "https://a.lmcdn.ru/img600x866/M/P/MP002XW0BH42_16308905_1_v1_2x.jpg",
+      img: "img/Олимпийка_Mar.webp",
       description:
         "\n        Олимпийка\n        Mark Formelle.\n        \n      ",
     },
@@ -22,7 +22,7 @@ const data = {
       numReview: 3,
       countInStocks: 18,
       link: "https://www.lamoda.ru/p/rtlaba428901/clothes-pinko-khudi/",
-      img: "https://a.lmcdn.ru/img600x866/R/T/RTLABA428901_16258409_1_v1_2x.jpg",
+      img: "img/Худи_Pinko.webp",
       description: "\n        Худи\n        Pinko.\n        \n      ",
     },
     {
@@ -34,7 +34,7 @@ const data = {
       numReview: 29,
       countInStocks: 3,
       link: "https://www.lamoda.ru/p/rtlaba718301/clothes-pinko-tolstovka/",
-      img: "https://a.lmcdn.ru/img600x866/R/T/RTLABA718301_16226138_1_v1_2x.jpg",
+      img: "img/Толстовка_Pinko.webp",
       description: "\n        Толстовка\n        Pinko.\n        \n      ",
     },
     {
@@ -46,7 +46,7 @@ const data = {
       numReview: 13,
       countInStocks: 9,
       link: "https://www.lamoda.ru/p/rtlaaz138401/clothes-mango-dzhinsy/",
-      img: "https://a.lmcdn.ru/img600x866/R/T/RTLAAZ138401_16041881_1_v1.jpg",
+      img: "img/Джинсы_Mar.webp",
       description: "\n        Джинсы\n        Mango.\n        \n      ",
     },
     {
@@ -58,7 +58,7 @@ const data = {
       numReview: 3,
       countInStocks: 10,
       link: "https://www.lamoda.ru/p/mp002xw0ciq5/clothes-baon-kurtka-uteplennaya/",
-      img: "https://a.lmcdn.ru/img600x866/M/P/MP002XW0CIQ5_16850747_1_v1_2x.jpg",
+      img: "img/Утепленная_куртка.webp",
       description:
         "\n        Куртка утепленная\n        Baon.\n        \n          Утепленная куртка выполнена из тонкого влагоотталкивающего полиэстера. Тонкий слой искусственного утеплителя. Детали: свободный силуэт, карманы на кнопках, шелковистая подкладка.",
     },
@@ -71,7 +71,7 @@ const data = {
       numReview: 20,
       countInStocks: 4,
       link: "https://www.lamoda.ru/p/mp002xw03ccf/clothes-giuliarossi-bryuki/",
-      img: "https://a.lmcdn.ru/img600x866/M/P/MP002XW03CCF_12340269_1_v2.jpeg",
+      img: "img/Брюки_Giulia.webp",
       description: "\n        Брюки\n        Giulia Rossi.\n        \n      ",
     },
     {
@@ -83,7 +83,7 @@ const data = {
       numReview: 43,
       countInStocks: 20,
       link: "https://www.lamoda.ru/p/mp002xw0bmyl/clothes-finnflare-legginsy/",
-      img: "https://a.lmcdn.ru/img600x866/M/P/MP002XW0BMYL_16326529_1_v2.jpeg",
+      img: "img/Леггинсы_Finn.webp",
       description: "\n        Леггинсы\n        Finn Flare.\n        \n      ",
     },
     {
@@ -95,7 +95,7 @@ const data = {
       numReview: 2,
       countInStocks: 13,
       link: "https://www.lamoda.ru/p/rtlabi368201/clothes-newbalance-kurtka/",
-      img: "https://a.lmcdn.ru/img600x866/R/T/RTLABI368201_16854200_1_v1_2x.jpg",
+      img: "img/Куртка_NB_Athletics.webp",
       description:
         "\n        Куртка\n        New Balance.\n        \n          Куртка выполнена из хлопкового материала. Детали: застежка на молнии, воротник-стойка, несъемный капюшон, 2 кармана, удлиненная спинка.",
     },
@@ -108,7 +108,7 @@ const data = {
       numReview: 14,
       countInStocks: 19,
       link: "https://www.lamoda.ru/p/mp002xw0c7wv/clothes-toptop-yubka/",
-      img: "https://a.lmcdn.ru/img600x866/M/P/MP002XW0C7WV_16637634_1_v1_2x.jpeg",
+      img: "img/Юбка_Топ_Топ.webp",
       description: "\n        Юбка\n        Top Top.\n        \n      ",
     },
     {
@@ -120,7 +120,7 @@ const data = {
       numReview: 40,
       countInStocks: 0,
       link: "https://www.lamoda.ru/p/rtlabb350201/clothes-mango-dzhinsy/",
-      img: "https://a.lmcdn.ru/img600x866/R/T/RTLABB350201_16215220_1_v1.jpg",
+      img: "img/Джинсы_Mongo.webp",
       description: "\n        Джинсы\n        Mango.\n        \n      ",
     },
   ],
