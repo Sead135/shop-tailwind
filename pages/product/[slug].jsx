@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Store } from "../../utils/store";
 import { CART_ADD_ITEM } from "../../utils/actionTypes";
+import ButtonCart from "../../components/Ui/ButtonCart";
 
 const ProductScreen = () => {
   const { state, dispatch } = useContext(Store);
@@ -87,18 +88,17 @@ const ProductScreen = () => {
               </p>
             </div>
 
-            <button
+            <ButtonCart
               disabled={
                 product.countInStocks <= 0 ||
                 state.cart.cartItems.find(
                   (item) => item.quantity === item.countInStocks
                 )
               }
-              className="primary-button w-full disabled:bg-gray-400 disabled:text-gray-500"
-              onClick={addToCartHandler}
+              buttonHandler={addToCartHandler}
             >
               Добавить в корзину
-            </button>
+            </ButtonCart>
           </div>
         </div>
       </div>

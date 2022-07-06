@@ -3,6 +3,7 @@ import Link from "next/link";
 import {CART_ADD_ITEM} from "../utils/actionTypes";
 import {Store} from "../utils/store";
 import Image from "next/image";
+import ButtonCart from "./Ui/ButtonCart";
 
 const ProductItem = ({product}) => {
     const {state, dispatch} = useContext(Store);
@@ -44,14 +45,12 @@ const ProductItem = ({product}) => {
                     </div>
                     <p>{product.price + "руб."}</p>
                 </div>
-                <button
-                    className="primary-button w-full disabled:bg-gray-400 disabled:text-gray-500"
-                    type="button"
-                    onClick={addToCartHandler}
+                <ButtonCart
+                    buttonHandler={addToCartHandler}
                     disabled={product.countInStocks <= 0}
                 >
                     В корзину
-                </button>
+                </ButtonCart>
             </div>
         </div>
     );
