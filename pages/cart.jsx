@@ -4,18 +4,16 @@ import {Store} from "../utils/store";
 import Link from "next/link";
 import Image from "next/image";
 import {
-    LoginIcon,
     MinusCircleIcon,
     PlusCircleIcon,
     XCircleIcon,
 } from "@heroicons/react/solid";
 import {CART_ADD_ITEM, CART_REMOVE_ITEM} from "../utils/actionTypes";
 import {useRouter} from "next/router";
+import dynamic from "next/dynamic";
+import CostOrder from "../components/CostOrder";
 
 const Cart = () => {
-    const promo = "SALE999"
-    const [inputPromo, setInputPromo] = useState('')
-    const promoCode = inputPromo === promo ? 999 : 0
     const router = useRouter();
     const {state, dispatch} = useContext(Store);
     const {
@@ -28,6 +26,7 @@ const Cart = () => {
     const removeItemHandler = (item) => {
         dispatch({type: CART_REMOVE_ITEM, payload: item});
     };
+
 
     const updateCartHandler = (item, type) => {
         const productCount = cartItems.find(
@@ -62,6 +61,7 @@ const Cart = () => {
         }
     };
 
+
     return (
         <Layout title="Корзина">
             <h1 className="mb-4 text-xl text-center">Корзина</h1>
@@ -74,7 +74,7 @@ const Cart = () => {
                 </div>
             ) : (
                 <div className="grid md:grid-cols-4 md:gap-5">
-                    <div className="overflow-x-auto md:col-span-3">
+                    <div className="overflow-x-auto md:col-span-3 mb-5">
                         <table className="min-w-full">
                             <thead className="border-b">
                             <tr>
@@ -115,7 +115,7 @@ const Cart = () => {
                                             />
                                         </div>
                                     </td>
-                                    <td className="p-5 text-right">{item.price + " руб."}</td>
+                                    <td className="p-5 text-right">{priceWithSpace(item.price) + " руб."}</td>
                                     <td className="p-5 text-right">
                                         <button onClick={() => removeItemHandler(item)}>
                                             <XCircleIcon className="h-5 w-5"/>
@@ -127,48 +127,9 @@ const Cart = () => {
                         </table>
                     </div>
                     <div>
-                        <ul className="card p-5">
-                            <li>
-                                <div className="pb-5 font-bold">
-                                    <h6>
-                                        Итого:{" "}
-                                        <span>
-                      {cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}{" "}
-                                            руб.
-                    </span>
-                                    </h6>
-                                </div>
-                            </li>
-                            <li className="flex mb-5 gap-3">
-                                <input
-                                    type="text"
-                                    className="border rounded w-full px-2"
-                                    placeholder="Промокод"
-                                    value={inputPromo}
-                                    onChange={(e) => setInputPromo(e.target.value)}
-                                />
-                                <button className="primary-button">
-                                    <LoginIcon className="w-5 h-5 "/>
-                                </button>
-                            </li>
-                            <li className="mb-5 font-bold">
-                                <h6>
-                                    Итог c промокодом:{" "}
-                                    <span>
-                    {cartItems.reduce((a, c) => a + c.quantity * c.price, 0) - promoCode}{" "}
-                                        руб.
-                  </span>
-                                </h6>
-                            </li>
-                            <li>
-                                <button
-                                    onClick={() => router.push("/shipping")}
-                                    className="primary-button w-full"
-                                >
-                                    Заказать
-                                </button>
-                            </li>
-                        </ul>
+                        <div className="card p-5">
+                            <CostOrder cartItems={cartItems} priceWithSpace={priceWithSpace}/>
+                        </div>
                     </div>
                 </div>
             )}
@@ -176,4 +137,4 @@ const Cart = () => {
     );
 };
 
-export default Cart;
+export default dynamic(() => Promise.resolve(Cart), {ssr: false})

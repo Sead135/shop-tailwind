@@ -35,3 +35,10 @@ footer {
     @apply rounded bg-amber-300 py-2 px-4 shadow outline-none hover:bg-amber-400 active:bg-amber-500;
 }
 
+.info__sale {
+    display: none;
+}
+
+.input__promo:hover .info__sale {
+    display: block;
+}
