@@ -1,10 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
+import Cookies from "js-cookie";
 import { Store } from "../utils/store";
 import { ToastContainer } from "react-toastify";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
+import { Menu } from "@headlessui/react";
 import "react-toastify/dist/ReactToastify.css";
+import { CART_RESET } from "../utils/actionTypes";
 
 const Layout = ({ children, title }) => {
   const { status, data: session } = useSession();
@@ -12,6 +15,12 @@ const Layout = ({ children, title }) => {
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
   const [cartItemsCount, setCartItemsCount] = useState(0);
+
+  const logoutClickHandler = () => {
+    Cookies.remove("cart");
+    dispatch({ type: CART_RESET });
+    signOut({callbackUrl: "/"});
+  };
 
   useEffect(() => {
     setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
@@ -47,7 +56,26 @@ const Layout = ({ children, title }) => {
               {status === "loading" ? (
                 "Загрузка..."
               ) : session?.user ? (
-                session.user.name
+                <Menu as="div" className="relative inline-block">
+                  <Menu.Button className="text-blue-500">
+                    {session.user.name}
+                  </Menu.Button>
+                  <Menu.Items className="absolute right-0 w-56 origin-top-right bg-white shadow-lg rounded">
+                    <Menu.Item>
+                      <Link href="/profile" passHref>
+                        <a className="dropdown-link">Профиль</a>
+                      </Link>
+                    </Menu.Item>
+                    <Menu.Item>
+                      <Link href="/order-history" passHref>
+                        <a className="dropdown-link">История заказов</a>
+                      </Link>
+                    </Menu.Item>
+                    <Menu.Item>
+                      <button className="dropdown-link text-red-500 w-full" onClick={logoutClickHandler}>Выйти</button>
+                    </Menu.Item>
+                  </Menu.Items>
+                </Menu>
               ) : (
                 <Link href="/login">
                   <a className="p-2">Войти</a>

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React, { useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import { signIn, useSession } from 'next-auth/react';
 import { useForm } from 'react-hook-form';
 import Layout from '../components/Layout';
@@ -7,16 +7,15 @@ import { getError } from '../utils/error';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 
-const LoginScreen = ({host}) => {
+const LoginScreen = () => {
   const { data: session } = useSession();
   const router = useRouter();
-  const { redirect } = router.query;
 
   useEffect(() => {
     if (session?.user) {
-      router.push(redirect || `https://${host}`);
+      router.push( "/");
     }
-  }, [router, session, redirect]);
+  }, [router, session]);
 
   const {
     handleSubmit,
@@ -99,13 +98,5 @@ const LoginScreen = ({host}) => {
     </Layout>
   );
 };
-
-export const getServerSideProps = async (context) => {
-  return {
-    props: {
-      host: context.req.headers.host
-    }
-  }
-}
 
 export default LoginScreen;

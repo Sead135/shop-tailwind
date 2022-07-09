@@ -2,6 +2,7 @@ import db from "../../utils/db";
 import User from "../../models/User";
 import data from "../../utils/data";
 
+/*Загрузка данных в БД*/
 const handler = async (req, res) => {
     await db.connect();
     await User.deleteMany();

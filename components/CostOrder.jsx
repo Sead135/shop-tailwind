@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from "react";
 import promo from "../utils/promo";
 import {LoginIcon} from "@heroicons/react/solid";
+import {useRouter} from "next/router";
 
 const CostOrder = ({cartItems, priceWithSpace}) => {
+    const router = useRouter()
     const [promoCode, setPromoCode] = useState({sale: 0, message: ""});
     const [inputPromo, setInputPromo] = useState("");
     const costOrder = cartItems.reduce((a, c) => a + c.quantity * c.price, 0);
@@ -67,7 +69,7 @@ const CostOrder = ({cartItems, priceWithSpace}) => {
             </h6>
             <button
                 onClick={() =>
-                    console.log({...cartItems, costOrder, sale, costWithSale})
+                    router.push("/shipping")
                 }
                 className="primary-button w-full"
             >

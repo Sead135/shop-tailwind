@@ -37,7 +37,7 @@ export default NextAuth({
                         isAdmin: user.isAdmin,
                     };
                 }
-                throw new Error('Чет пошло не так...');
+                throw new Error('Неверный адрес электронной почты или пароль.');
             },
         }),
     ],
