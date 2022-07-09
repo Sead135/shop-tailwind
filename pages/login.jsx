@@ -7,15 +7,14 @@ import { getError } from '../utils/error';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 
-const LoginScreen = () => {
+const LoginScreen = ({host}) => {
   const { data: session } = useSession();
-
   const router = useRouter();
   const { redirect } = router.query;
 
   useEffect(() => {
     if (session?.user) {
-      router.push(redirect || '/');
+      router.push(redirect || `https://${host}`);
     }
   }, [router, session, redirect]);
 
@@ -100,5 +99,13 @@ const LoginScreen = () => {
     </Layout>
   );
 };
+
+export const getServerSideProps = async (context) => {
+  return {
+    props: {
+      host: context.req.headers.host
+    }
+  }
+}
 
 export default LoginScreen;
