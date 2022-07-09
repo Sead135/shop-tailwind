@@ -43,17 +43,19 @@ const Payment = () => {
         <Layout title="Выбор метода оплаты">
             <CheckoutWizard activeStep={2}/>
             <form className="mx-auto max-w-screen-md" onSubmit={submitHandler}>
+                <h1 className="mb-4 text-xl">Метод оплаты</h1>
                 {methodPayments.map((payment) => (
                     <div key={payment.id} className="mb-4">
                         <input
                             type="radio"
                             id={payment.sub}
                             name="paymentMethod"
+                            className="p-4 cursor-pointer outline-none focus:right-0"
                             checked={selectedPaymentMethod === payment.id}
                             onChange={() => setSelectedPaymentMethod(payment.id)}
                         />
 
-                        <label htmlFor={payment.sub}>{payment.name}</label>
+                        <label htmlFor={payment.sub} className="p-2 cursor-pointer">{payment.name}</label>
                     </div>
                 ))}
 
