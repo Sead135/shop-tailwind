@@ -1,18 +1,17 @@
 import React, { useContext } from "react";
 import Layout from "../../components/Layout";
-import { useRouter } from "next/router";
-import data from "../../utils/data";
 import Link from "next/link";
 import Image from "next/image";
 import { Store } from "../../utils/store";
 import { CART_ADD_ITEM } from "../../utils/actionTypes";
 import ButtonCart from "../../components/Ui/ButtonCart";
+import db from "../../utils/db";
+import Product from "../../models/Product";
 
-const ProductScreen = () => {
+const ProductScreen = ({product}) => {
   const { state, dispatch } = useContext(Store);
-  const { query } = useRouter();
-  const { slug } = query;
-  const product = data.products.find((item) => item.slug.toString() === slug);
+
+  console.log(product)
 
   if (!product) {
     return (
@@ -24,11 +23,12 @@ const ProductScreen = () => {
     );
   }
 
-  const addToCartHandler = () => {
+  const addToCartHandler = async () => {
     const existItem = state.cart.cartItems.find(
       (item) => item.slug === product.slug
     );
     const quantity = existItem ? existItem.quantity + 1 : 1;
+
     dispatch({ type: CART_ADD_ITEM, payload: { ...product, quantity } });
   };
 
@@ -104,6 +104,18 @@ const ProductScreen = () => {
       </div>
     </Layout>
   );
+};
+
+export const getServerSideProps = async ({ params: {slug} }) => {
+  await db.connect()
+  const product = await Product.findOne({ slug }).lean();
+  await db.disconnect()
+
+  return {
+    props: {
+      product: product ? db.convertDocToObj(product) : null
+    }
+  }
 };
 
 export default ProductScreen;

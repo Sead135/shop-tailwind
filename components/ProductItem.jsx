@@ -4,6 +4,7 @@ import {CART_ADD_ITEM} from "../utils/actionTypes";
 import {Store} from "../utils/store";
 import Image from "next/image";
 import ButtonCart from "./Ui/ButtonCart";
+import {toast} from "react-toastify";
 
 const ProductItem = ({product}) => {
     const {state, dispatch} = useContext(Store);
@@ -14,7 +15,10 @@ const ProductItem = ({product}) => {
         );
         const quantity = existItem ? existItem.quantity + 1 : 1;
         dispatch({type: CART_ADD_ITEM, payload: {...product, quantity}});
+        toast.success("Отлично! В корзине.")
     };
+
+    const receiptProduct = state.cart.cartItems.find(item => item._id === product._id)
 
     return (
         <div className="card">
@@ -51,6 +55,7 @@ const ProductItem = ({product}) => {
                 >
                     В корзину
                 </ButtonCart>
+
             </div>
         </div>
     );
