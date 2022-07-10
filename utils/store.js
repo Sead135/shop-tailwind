@@ -5,6 +5,8 @@ import {
   CART_RESET,
   SAVE_PAYMENT_METHOD,
   SAVE_SHIPPING_ADDRESS,
+  PROMO_SALE,
+  CART_CLEAR_ITEMS,
 } from "./actionTypes";
 import Cookies from "js-cookie";
 
@@ -13,7 +15,7 @@ export const Store = createContext();
 const initialState = {
   cart: Cookies.get("cart")
     ? JSON.parse(Cookies.get("cart"))
-    : { cartItems: [], shippingAddress: [], paymentMethod: "" },
+    : { cartItems: [], shippingAddress: [], paymentMethod: "", promoCode: [] },
 };
 
 const reducer = (state, action) => {
@@ -53,7 +55,7 @@ const reducer = (state, action) => {
       };
     }
 
-    case SAVE_SHIPPING_ADDRESS:
+    case SAVE_SHIPPING_ADDRESS: {
       return {
         ...state,
         cart: {
@@ -64,6 +66,7 @@ const reducer = (state, action) => {
           },
         },
       };
+    }
 
     case SAVE_PAYMENT_METHOD: {
       return {
@@ -73,6 +76,21 @@ const reducer = (state, action) => {
           paymentMethod: action.payload,
         },
       };
+    }
+
+    case PROMO_SALE: {
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          promo: { ...state.cart.promo, ...action.payload },
+        },
+      };
+    }
+
+    case CART_CLEAR_ITEMS: {
+      Cookies.set("cart", JSON.stringify({ ...state.cart, cartItems: [] }));
+      return { ...state, cart: { ...state.cart, cartItems: [] } };
     }
 
     default:
